@@ -30,6 +30,8 @@
   "badge_id": "الرقم",
   "active_case": "الحالة الحالية",
   "clinical_suite_tools": "الأدوات السريرية",
+  "suite_tools_subtitle": "الوحدات السريرية والتفضيلات والحساب",
+  "preferences": "التفضيلات",
   "advanced_modules": "وحدات متقدمة",
   "pharmacology_title": "الأدوية والاستنشاق",
   "pharmacology_subtitle": "موسعات الشعب والبروستاسيكلين ومعايرة التهدئة",

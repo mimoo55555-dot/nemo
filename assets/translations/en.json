@@ -30,6 +30,8 @@
   "badge_id": "ID",
   "active_case": "Active case",
   "clinical_suite_tools": "Clinical Suite & Tools",
+  "suite_tools_subtitle": "Clinical modules, preferences, and account",
+  "preferences": "Preferences",
   "advanced_modules": "ADVANCED MODULES",
   "pharmacology_title": "Pharmacology & Aerosol Delivery",
   "pharmacology_subtitle": "Bronchodilators, prostacyclins, sedation titration",

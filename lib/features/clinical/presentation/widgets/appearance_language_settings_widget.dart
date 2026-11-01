@@ -19,42 +19,71 @@ class AppearanceLanguageSettingsWidget extends StatelessWidget {
         current is ThemeLanguageErrorState,
     builder: (context, state) {
       final cubit = ThemeCubit.get(context);
-      return Card(
-        color: ColorsManager.surface,
-        child: Column(
-          children: [
-            SwitchListTile(
-              title: Text(
-                appTranslation().get('dark_mode'),
-                style: TextStylesManager.body,
-              ),
-              value: cubit.isDarkMode,
-              onChanged: (_) => cubit.changeTheme(),
+      return Column(
+        children: [
+          SwitchListTile(
+            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+              16,
+              4,
+              16,
+              4,
             ),
-            ListTile(
-              title: Text(
-                appTranslation().get('app_language'),
-                style: TextStylesManager.body,
-              ),
-              subtitle: Text(
-                appTranslation().get(
-                  cubit.isArabicLang ? 'language_arabic' : 'language_english',
-                ),
-                style: TextStylesManager.bodySmall,
-              ),
-              trailing: ConditionalBuilder(
-                loadingState: state is ThemeLanguageLoadingState,
-                errorState: state is ThemeLanguageErrorState,
-                loadingBuilder: (_) => const CircularProgressIndicator(),
-                errorBuilder: (_) => const Icon(Icons.error_outline),
-                successBuilder: (_) => const Icon(Icons.language),
-              ),
-              onTap: state is ThemeLanguageLoadingState
-                  ? null
-                  : cubit.toggleLanguage,
+            secondary: Icon(
+              Icons.dark_mode_outlined,
+              color: ColorsManager.primaryText,
             ),
-          ],
-        ),
+            title: Text(
+              appTranslation().get('dark_mode'),
+              style: TextStylesManager.body,
+            ),
+            value: cubit.isDarkMode,
+            onChanged: (_) => cubit.changeTheme(),
+          ),
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+            child: Divider(height: 1),
+          ),
+          ListTile(
+            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+              16,
+              4,
+              16,
+              4,
+            ),
+            leading: Icon(
+              Icons.translate_rounded,
+              color: ColorsManager.primaryText,
+            ),
+            title: Text(
+              appTranslation().get('app_language'),
+              style: TextStylesManager.body,
+            ),
+            subtitle: Text(
+              appTranslation().get(
+                cubit.isArabicLang ? 'language_arabic' : 'language_english',
+              ),
+              style: TextStylesManager.bodySmall,
+            ),
+            trailing: ConditionalBuilder(
+              loadingState: state is ThemeLanguageLoadingState,
+              errorState: state is ThemeLanguageErrorState,
+              loadingBuilder: (_) => const CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+              errorBuilder: (_) => Icon(
+                Icons.error_outline,
+                color: ColorsManager.red,
+              ),
+              successBuilder: (_) => Icon(
+                Icons.arrow_forward_rounded,
+                color: ColorsManager.grey,
+              ),
+            ),
+            onTap: state is ThemeLanguageLoadingState
+                ? null
+                : cubit.toggleLanguage,
+          ),
+        ],
       );
     },
   );

@@ -20,20 +20,29 @@ class MoreModuleTileWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Card(
-    color: ColorsManager.surface,
-    child: ListTile(
-      leading: Icon(icon, color: iconColor),
-      title: Text(
-        appTranslation().get(titleKey),
-        style: TextStylesManager.subtitle,
-      ),
-      subtitle: Text(
-        appTranslation().get(subtitleKey),
-        style: TextStylesManager.bodySmall,
-      ),
-      trailing: Icon(Icons.chevron_right, color: ColorsManager.grey),
-      onTap: onTap,
+  Widget build(BuildContext context) => ListTile(
+    contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 6, 16, 6),
+    leading: CircleAvatar(
+      radius: 21,
+      backgroundColor: iconColor.withValues(alpha: 0.12),
+      child: Icon(icon, color: iconColor, size: 21),
     ),
+    title: Text(
+      appTranslation().get(titleKey),
+      style: TextStylesManager.subtitle,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+    ),
+    subtitle: Text(
+      appTranslation().get(subtitleKey),
+      style: TextStylesManager.bodySmall,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    ),
+    trailing: Icon(
+      Icons.arrow_forward_rounded,
+      color: ColorsManager.grey,
+    ),
+    onTap: onTap,
   );
 }

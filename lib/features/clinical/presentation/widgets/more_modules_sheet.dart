@@ -5,15 +5,12 @@ import 'package:nemoventrt/core/models/staff_user.dart';
 import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
-import 'package:nemoventrt/core/utils/constants/primary/conditional_builder.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_icon_button_widget.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_sheet_handle_widget.dart';
+import 'package:nemoventrt/core/utils/constants/spacing.dart';
 import 'package:nemoventrt/core/utils/extensions/context_extension.dart';
 import 'package:nemoventrt/features/clinical/presentation/logic/auth_cubit.dart';
-import 'package:nemoventrt/features/clinical/presentation/widgets/active_patient_summary_widget.dart';
-import 'package:nemoventrt/features/clinical/presentation/widgets/appearance_language_settings_widget.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/more_modules_list_widget.dart';
-import 'package:nemoventrt/features/clinical/presentation/widgets/staff_profile_card_widget.dart';
 
 class MoreModulesSheet extends StatelessWidget {
   final Patient? activePatient;
@@ -29,46 +26,59 @@ class MoreModulesSheet extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
       ),
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.85,
+        maxHeight: MediaQuery.sizeOf(context).height * 0.92,
       ),
       child: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const PrimarySheetHandleWidget(),
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
+              padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 12, 8),
               child: Row(
                 children: [
-                  const Expanded(child: PrimarySheetHandleWidget()),
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundColor: ColorsManager.primaryLight,
+                    child: Icon(
+                      Icons.medical_information_outlined,
+                      color: ColorsManager.primaryText,
+                    ),
+                  ),
+                  horizontalSpace12,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          appTranslation().get('clinical_suite_tools'),
+                          style: TextStylesManager.title.copyWith(fontSize: 18),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        verticalSpace2,
+                        Text(
+                          appTranslation().get('suite_tools_subtitle'),
+                          style: TextStylesManager.caption,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
                   PrimaryIconButtonWidget(
                     semanticLabelKey: 'close',
                     onPressed: () => context.pop,
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(Icons.close_rounded),
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  appTranslation().get('clinical_suite_tools'),
-                  style: TextStylesManager.title,
-                ),
-              ),
-            ),
-            StaffProfileCardWidget(user: user),
-            const AppearanceLanguageSettingsWidget(),
-            ConditionalBuilder(
-              loadingState: false,
-              emptyState: activePatient == null,
-              emptyBuilder: (_) => const SizedBox.shrink(),
-              successBuilder: (_) => ActivePatientSummaryWidget(
-                patient: activePatient!,
-              ),
-            ),
             Expanded(
-              child: MoreModulesListWidget(activePatient: activePatient),
+              child: MoreModulesListWidget(
+                activePatient: activePatient,
+                user: user,
+              ),
             ),
           ],
         ),
