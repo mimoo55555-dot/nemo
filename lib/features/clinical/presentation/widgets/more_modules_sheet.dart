@@ -7,6 +7,7 @@ import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/conditional_builder.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_icon_button_widget.dart';
+import 'package:nemoventrt/core/utils/constants/primary/primary_sheet_handle_widget.dart';
 import 'package:nemoventrt/core/utils/extensions/context_extension.dart';
 import 'package:nemoventrt/features/clinical/presentation/logic/auth_cubit.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/active_patient_summary_widget.dart';
@@ -33,10 +34,18 @@ class MoreModulesSheet extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            PrimaryIconButtonWidget(
-              semanticLabelKey: 'close',
-              onPressed: () => context.pop,
-              icon: const Icon(Icons.close),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
+              child: Row(
+                children: [
+                  const Expanded(child: PrimarySheetHandleWidget()),
+                  PrimaryIconButtonWidget(
+                    semanticLabelKey: 'close',
+                    onPressed: () => context.pop,
+                    icon: const Icon(Icons.close),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),

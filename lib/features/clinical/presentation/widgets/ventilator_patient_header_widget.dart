@@ -23,38 +23,69 @@ class VentilatorPatientHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) => Card(
     color: ColorsManager.surface,
     child: Padding(
-      padding: const EdgeInsets.all(14),
-      child: Row(
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundColor: ColorsManager.primaryLight,
-            child: const Icon(Icons.air, color: ColorsManager.primary),
-          ),
-          horizontalSpace12,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${patient.bed} · ${patient.fullName}',
-                  style: TextStylesManager.subtitle,
-                ),
-                Text(
-                  '${appTranslation().get('ideal_body_weight')}: ${ibw.toStringAsFixed(1)} kg · ${appTranslation().get('target_6ml_kg')}: $targetVolume mL',
-                  style: TextStylesManager.bodySmall,
-                ),
-              ],
-            ),
-          ),
-          Chip(
-            label: Text(
-              mode,
-              style: TextStylesManager.caption.copyWith(
-                color: ColorsManager.primary,
-                fontWeight: FontWeight.bold,
+          Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: ColorsManager.primaryLight,
+                child: Icon(Icons.air, color: ColorsManager.primaryText),
               ),
-            ),
-            backgroundColor: ColorsManager.primaryLight,
+              horizontalSpace12,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${patient.bed} · ${patient.fullName}',
+                      style: TextStylesManager.subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(patient.mrn, style: TextStylesManager.caption),
+                  ],
+                ),
+              ),
+              horizontalSpace8,
+              Chip(
+                label: Text(
+                  mode,
+                  style: TextStylesManager.caption.copyWith(
+                    color: ColorsManager.primaryText,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                backgroundColor: ColorsManager.primaryLight,
+                visualDensity: VisualDensity.compact,
+              ),
+            ],
+          ),
+          verticalSpace8,
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            children: [
+              Chip(
+                avatar: const Icon(Icons.monitor_weight_outlined, size: 16),
+                label: Text(
+                  '${appTranslation().get('ideal_body_weight')}: ${ibw.toStringAsFixed(1)} kg',
+                  style: TextStylesManager.caption,
+                ),
+                backgroundColor: ColorsManager.elevatedSurface,
+                visualDensity: VisualDensity.compact,
+              ),
+              Chip(
+                avatar: const Icon(Icons.straighten_outlined, size: 16),
+                label: Text(
+                  '${appTranslation().get('target_6ml_kg')}: $targetVolume mL',
+                  style: TextStylesManager.caption,
+                ),
+                backgroundColor: ColorsManager.elevatedSurface,
+                visualDensity: VisualDensity.compact,
+              ),
+            ],
           ),
         ],
       ),

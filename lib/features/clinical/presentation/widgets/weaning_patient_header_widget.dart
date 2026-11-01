@@ -19,7 +19,7 @@ class WeaningPatientHeaderWidget extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: ColorsManager.amberLight,
-            child: const Icon(Icons.psychology, color: ColorsManager.amber),
+            child: Icon(Icons.psychology, color: ColorsManager.amber),
           ),
           horizontalSpace12,
           Expanded(

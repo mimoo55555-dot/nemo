@@ -12,7 +12,7 @@ class WeaningRsbiCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ready = rsbi < 105;
-    final color = ready ? ColorsManager.primary : ColorsManager.red;
+    final color = ready ? ColorsManager.primaryText : ColorsManager.red;
     return Card(
       color: ready ? ColorsManager.primaryLight : ColorsManager.redLight,
       shape: RoundedRectangleBorder(
@@ -47,13 +47,15 @@ class WeaningRsbiCardWidget extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: color,
+                    color: ready
+                        ? ColorsManager.primary
+                        : ColorsManager.redAction,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     appTranslation().get(ready ? 'ready_to_wean' : 'not_ready'),
                     style: TextStylesManager.bodySmall.copyWith(
-                      color: ColorsManager.surface,
+                      color: ColorsManager.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

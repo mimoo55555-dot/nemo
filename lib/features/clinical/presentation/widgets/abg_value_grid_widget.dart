@@ -22,12 +22,12 @@ class AbgValueGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GridView.count(
-    crossAxisCount: 3,
+    crossAxisCount: 2,
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
-    crossAxisSpacing: 8,
-    mainAxisSpacing: 8,
-    childAspectRatio: 1.3,
+    crossAxisSpacing: 12,
+    mainAxisSpacing: 12,
+    childAspectRatio: 1.55,
     children: [
       AbgMetricTileWidget(
         label: appTranslation().get('ph'),
@@ -56,7 +56,7 @@ class AbgValueGridWidget extends StatelessWidget {
       AbgMetricTileWidget(
         label: appTranslation().get('base_excess'),
         value: baseExcess.toStringAsFixed(1),
-        range: '−2 to +2',
+        range: '−2–+2',
         isAlert: baseExcess.abs() > 2,
       ),
       AbgMetricTileWidget(

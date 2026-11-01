@@ -32,7 +32,7 @@ class MoreModulesListWidget extends StatelessWidget {
         titleKey: 'airway_title',
         subtitleKey: 'airway_subtitle',
         icon: Icons.medical_services,
-        iconColor: ColorsManager.primary,
+        iconColor: ColorsManager.primaryText,
         onTap: () => _showInfo(
           context,
           'airway_info_title',

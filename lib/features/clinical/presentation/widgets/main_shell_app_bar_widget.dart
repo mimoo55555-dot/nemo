@@ -25,7 +25,7 @@ class MainShellAppBarWidget extends StatelessWidget
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(64);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class MainShellAppBarWidget extends StatelessWidget
       titleSpacing: 12,
       title: Row(
         children: [
-          const Icon(Icons.air, color: ColorsManager.primary),
+          Icon(Icons.air, color: ColorsManager.primaryText),
           horizontalSpace8,
           Expanded(
             child: Column(

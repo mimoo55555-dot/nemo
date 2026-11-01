@@ -25,7 +25,9 @@ class PatientCensusFilterChipWidget extends StatelessWidget {
       selected: selected,
       selectedColor: ColorsManager.primaryLight,
       labelStyle: TextStylesManager.caption.copyWith(
-        color: selected ? ColorsManager.primary : ColorsManager.textSecondary,
+        color: selected
+            ? ColorsManager.primaryText
+            : ColorsManager.textSecondary,
         fontWeight: selected ? FontWeight.bold : FontWeight.normal,
       ),
       onSelected: (_) => onSelected(value),

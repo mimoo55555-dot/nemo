@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/conditional_builder.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
@@ -40,7 +41,10 @@ class MainShellBodyWidget extends StatelessWidget {
         children: [
           const CircularProgressIndicator(),
           verticalSpace16,
-          Text(appTranslation().get('connecting_to_clinical_records')),
+          Text(
+            appTranslation().get('connecting_to_clinical_records'),
+            style: TextStylesManager.bodySmall,
+          ),
         ],
       ),
     ),

@@ -16,7 +16,7 @@ class NoPatientEmptyWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.air, size: 56, color: ColorsManager.primary),
+          Icon(Icons.air, size: 56, color: ColorsManager.primaryText),
           verticalSpace16,
           Text(
             appTranslation().get('no_patients_title'),
@@ -26,6 +26,7 @@ class NoPatientEmptyWidget extends StatelessWidget {
           verticalSpace8,
           Text(
             appTranslation().get('no_patients_message'),
+            style: TextStylesManager.bodySmall,
             textAlign: TextAlign.center,
           ),
           verticalSpace20,

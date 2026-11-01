@@ -24,23 +24,32 @@ class VitalMetricCardWidget extends StatelessWidget {
   Widget build(BuildContext context) => Card(
     color: ColorsManager.surface,
     child: Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsetsDirectional.fromSTEB(14, 12, 14, 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: Text(
                   appTranslation().get(labelKey),
-                  style: TextStylesManager.caption,
+                  style: TextStylesManager.caption.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Icon(icon, size: 16, color: accentColor),
+              horizontalSpace4,
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: accentColor.withValues(alpha: 0.12),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, size: 17, color: accentColor),
+              ),
             ],
           ),
           Row(
@@ -50,14 +59,21 @@ class VitalMetricCardWidget extends StatelessWidget {
               Flexible(
                 child: Text(
                   value,
-                  style: TextStylesManager.title.copyWith(color: accentColor),
+                  style: TextStylesManager.metricValue.copyWith(
+                    color: accentColor,
+                    fontSize: 26,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               horizontalSpace4,
-              Text(
-                appTranslation().get(unitKey),
-                style: TextStylesManager.caption.copyWith(
-                  color: ColorsManager.grey,
+              Flexible(
+                child: Text(
+                  appTranslation().get(unitKey),
+                  style: TextStylesManager.caption,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],

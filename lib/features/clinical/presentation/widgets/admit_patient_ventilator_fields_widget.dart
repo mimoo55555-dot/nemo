@@ -78,6 +78,7 @@ class AdmitPatientVentilatorFieldsWidget extends StatelessWidget {
           ),
         ],
       ),
+      verticalSpace8,
       Row(
         children: [
           Expanded(
@@ -101,18 +102,16 @@ class AdmitPatientVentilatorFieldsWidget extends StatelessWidget {
               ),
             ),
           ),
-          horizontalSpace8,
-          Expanded(
-            child: PrimaryTextFormField(
-              labelKey: 'fio2_percent',
-              initialValue: fio2.toInt().toString(),
-              keyboardType: TextInputType.number,
-              onSaved: (value) => onFio2Saved(
-                double.tryParse(value ?? '') ?? fio2,
-              ),
-            ),
-          ),
         ],
+      ),
+      verticalSpace8,
+      PrimaryTextFormField(
+        labelKey: 'fio2_percent',
+        initialValue: fio2.toInt().toString(),
+        keyboardType: TextInputType.number,
+        onSaved: (value) => onFio2Saved(
+          double.tryParse(value ?? '') ?? fio2,
+        ),
       ),
     ],
   );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/extensions/context_extension.dart';
@@ -81,13 +80,7 @@ class _AdmitPatientDialogState extends State<AdmitPatientDialog> {
         .replaceFirst('{name}', _formController.lastName)
         .replaceFirst('{bed}', _formController.bed);
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: ColorsManager.textPrimary,
-        content: Text(
-          message,
-          style: TextStylesManager.body.copyWith(color: ColorsManager.white),
-        ),
-      ),
+      SnackBar(content: Text(message)),
     );
   }
 

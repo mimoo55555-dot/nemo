@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/models/patient.dart';
+import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
 import 'package:nemoventrt/features/clinical/logic/patient_cubit.dart';
@@ -49,7 +50,10 @@ class _VitalsScreenState extends State<VitalsScreen> {
               onPressed: _logObservation,
             ),
             verticalSpace20,
-            Text(appTranslation().get('telemetry_history')),
+            Text(
+              appTranslation().get('telemetry_history'),
+              style: TextStylesManager.sectionTitle,
+            ),
             verticalSpace8,
             VitalsHistoryWidget(observations: widget.patient.vitalsHistory),
             verticalSpace32,

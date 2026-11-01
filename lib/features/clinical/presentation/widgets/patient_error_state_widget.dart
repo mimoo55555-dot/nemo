@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/theme/colors.dart';
+import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_action_button_widget.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
@@ -21,9 +22,13 @@ class PatientErrorStateWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.cloud_off, size: 48, color: ColorsManager.orange),
+          Icon(Icons.cloud_off, size: 48, color: ColorsManager.orange),
           verticalSpace12,
-          Text(appTranslation().get(messageKey), textAlign: TextAlign.center),
+          Text(
+            appTranslation().get(messageKey),
+            style: TextStylesManager.body,
+            textAlign: TextAlign.center,
+          ),
           verticalSpace16,
           PrimaryActionButtonWidget(
             labelKey: 'retry_connection',

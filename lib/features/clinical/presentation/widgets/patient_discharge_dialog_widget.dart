@@ -33,9 +33,9 @@ class PatientDischargeDialogWidget extends StatelessWidget {
       ),
       PrimaryActionButtonWidget(
         labelKey: 'discharge_and_remove',
-        icon: Icons.logout,
+        icon: Icons.delete_outline,
         isFullWidth: false,
-        backgroundColor: ColorsManager.red,
+        backgroundColor: ColorsManager.redAction,
         onPressed: () {
           context.pop;
           onConfirm();

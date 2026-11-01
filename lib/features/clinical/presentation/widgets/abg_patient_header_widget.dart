@@ -19,7 +19,7 @@ class AbgPatientHeaderWidget extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: ColorsManager.purpleLight,
-            child: const Icon(Icons.science, color: ColorsManager.purple),
+            child: Icon(Icons.science, color: ColorsManager.purple),
           ),
           horizontalSpace12,
           Expanded(

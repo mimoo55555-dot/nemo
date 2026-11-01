@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/models/patient.dart';
 import 'package:nemoventrt/core/theme/colors.dart';
+import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/conditional_builder.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
@@ -18,9 +19,18 @@ class VitalsHistoryWidget extends StatelessWidget {
     emptyBuilder: (_) => Card(
       color: ColorsManager.surface,
       child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Center(
-          child: Text(appTranslation().get('no_telemetry_records')),
+        padding: const EdgeInsets.all(18),
+        child: Row(
+          children: [
+            Icon(Icons.monitor_heart_outlined, color: ColorsManager.grey),
+            horizontalSpace12,
+            Expanded(
+              child: Text(
+                appTranslation().get('no_telemetry_records'),
+                style: TextStylesManager.bodySmall,
+              ),
+            ),
+          ],
         ),
       ),
     ),

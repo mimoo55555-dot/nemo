@@ -34,27 +34,33 @@ class VentilatorModeSelectorWidget extends StatelessWidget {
         style: TextStylesManager.sectionTitle,
       ),
       verticalSpace8,
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: _modes
-              .map(
-                (mode) => Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 6),
-                  child: ChoiceChip(
+      Card(
+        color: ColorsManager.surface,
+        child: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 10, 12, 6),
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 2,
+            children: _modes
+                .map(
+                  (mode) => ChoiceChip(
                     label: Text(mode),
                     selected: selectedMode == mode,
                     selectedColor: ColorsManager.primary,
+                    showCheckmark: false,
                     labelStyle: TextStylesManager.caption.copyWith(
                       color: selectedMode == mode
                           ? ColorsManager.white
                           : ColorsManager.textSecondary,
+                      fontWeight: selectedMode == mode
+                          ? FontWeight.bold
+                          : FontWeight.w500,
                     ),
                     onSelected: (_) => onSelected(mode),
                   ),
-                ),
-              )
-              .toList(growable: false),
+                )
+                .toList(growable: false),
+          ),
         ),
       ),
     ],

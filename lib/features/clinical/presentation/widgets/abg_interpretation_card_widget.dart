@@ -31,7 +31,7 @@ class AbgInterpretationCardWidget extends StatelessWidget {
                 child: Text(
                   appTranslation().get('automated_clinical_interpretation'),
                   style: TextStylesManager.caption.copyWith(
-                    color: ColorsManager.primary,
+                    color: ColorsManager.primaryText,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

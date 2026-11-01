@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/models/patient.dart';
 import 'package:nemoventrt/core/theme/colors.dart';
+import 'package:nemoventrt/core/utils/constants/primary/primary_sheet_handle_widget.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
 import 'package:nemoventrt/features/clinical/logic/patient_state.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/patient_census_footer_widget.dart';
@@ -44,15 +45,7 @@ class PatientCensusContentWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            margin: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 8),
-            width: 44,
-            height: 5,
-            decoration: BoxDecoration(
-              color: ColorsManager.lightGrey,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
+          const PrimarySheetHandleWidget(),
           PatientCensusHeaderWidget(state: state, onClose: onClose),
           PatientCensusSearchWidget(onChanged: onSearchChanged),
           PatientCategoryFilterWidget(

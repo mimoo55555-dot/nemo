@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
+import 'package:nemoventrt/core/utils/constants/primary/primary_action_button_widget.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/sbt_description_widget.dart';
 
@@ -28,29 +29,36 @@ class _SbtControlWidgetState extends State<SbtControlWidget> {
   Widget build(BuildContext context) => Card(
     color: _isActive ? ColorsManager.amberLight : ColorsManager.surface,
     child: Padding(
-      padding: const EdgeInsets.all(14),
-      child: Row(
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 14),
+      child: Column(
         children: [
-          Icon(
-            Icons.timer,
-            color: _isActive ? ColorsManager.amber : ColorsManager.grey,
+          Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: ColorsManager.amberLight,
+                child: Icon(
+                  Icons.timer_outlined,
+                  color: ColorsManager.amber,
+                ),
+              ),
+              horizontalSpace12,
+              Expanded(
+                child: SbtDescriptionWidget(
+                  isActive: _isActive,
+                  secondsRemaining: _secondsRemaining,
+                ),
+              ),
+            ],
           ),
-          horizontalSpace12,
-          Expanded(
-            child: SbtDescriptionWidget(
-              isActive: _isActive,
-              secondsRemaining: _secondsRemaining,
-            ),
-          ),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: _isActive
-                  ? ColorsManager.red
-                  : ColorsManager.primary,
-              foregroundColor: ColorsManager.white,
-            ),
+          verticalSpace12,
+          PrimaryActionButtonWidget(
+            labelKey: _isActive ? 'stop' : 'start_30m',
+            icon: _isActive ? Icons.stop_circle_outlined : Icons.play_arrow,
+            height: 46,
+            backgroundColor: _isActive
+                ? ColorsManager.redAction
+                : ColorsManager.primary,
             onPressed: _toggleTimer,
-            child: Text(appTranslation().get(_isActive ? 'stop' : 'start_30m')),
           ),
         ],
       ),
@@ -58,11 +66,15 @@ class _SbtControlWidgetState extends State<SbtControlWidget> {
   );
 
   void _toggleTimer() {
-    setState(() => _isActive = !_isActive);
-    if (!_isActive) {
+    if (_isActive) {
       _timer?.cancel();
+      setState(() => _isActive = false);
       return;
     }
+    setState(() {
+      _isActive = true;
+      _secondsRemaining = 30 * 60;
+    });
     _timer = Timer.periodic(const Duration(seconds: 1), _onTick);
   }
 

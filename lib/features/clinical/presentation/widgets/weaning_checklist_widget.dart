@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
@@ -27,34 +28,40 @@ class WeaningChecklistWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        appTranslation().get('extubation_readiness_criteria'),
-        style: TextStylesManager.subtitle,
+  Widget build(BuildContext context) => Card(
+    color: ColorsManager.surface,
+    child: Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            appTranslation().get('extubation_readiness_criteria'),
+            style: TextStylesManager.sectionTitle,
+          ),
+          verticalSpace8,
+          WeaningReadinessCheckboxWidget(
+            titleKey: 'adequate_gas_exchange',
+            value: gasExchangeAcceptable,
+            onChanged: onGasExchangeChanged,
+          ),
+          WeaningReadinessCheckboxWidget(
+            titleKey: 'hemodynamic_stability',
+            value: hemodynamicStable,
+            onChanged: onHemodynamicChanged,
+          ),
+          WeaningReadinessCheckboxWidget(
+            titleKey: 'neurological_readiness',
+            value: mentalStatusAlert,
+            onChanged: onMentalStatusChanged,
+          ),
+          WeaningReadinessCheckboxWidget(
+            titleKey: 'positive_cuff_leak_test',
+            value: airwayCuffLeakPositive,
+            onChanged: onCuffLeakChanged,
+          ),
+        ],
       ),
-      verticalSpace8,
-      WeaningReadinessCheckboxWidget(
-        titleKey: 'adequate_gas_exchange',
-        value: gasExchangeAcceptable,
-        onChanged: onGasExchangeChanged,
-      ),
-      WeaningReadinessCheckboxWidget(
-        titleKey: 'hemodynamic_stability',
-        value: hemodynamicStable,
-        onChanged: onHemodynamicChanged,
-      ),
-      WeaningReadinessCheckboxWidget(
-        titleKey: 'neurological_readiness',
-        value: mentalStatusAlert,
-        onChanged: onMentalStatusChanged,
-      ),
-      WeaningReadinessCheckboxWidget(
-        titleKey: 'positive_cuff_leak_test',
-        value: airwayCuffLeakPositive,
-        onChanged: onCuffLeakChanged,
-      ),
-    ],
+    ),
   );
 }

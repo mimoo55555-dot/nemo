@@ -15,8 +15,10 @@ class AdmitPatientDialogActionsWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Row(
-    mainAxisAlignment: MainAxisAlignment.end,
+  Widget build(BuildContext context) => OverflowBar(
+    alignment: MainAxisAlignment.end,
+    overflowAlignment: OverflowBarAlignment.end,
+    overflowSpacing: 8,
     children: [
       TextButton(
         onPressed: isSaving ? null : onCancel,

@@ -43,7 +43,7 @@ abstract final class AppTheme {
           secondary: ColorsManager.blue,
           surface: surface,
           onSurface: foreground,
-          error: ColorsManager.red,
+          error: darkMode ? ColorsManager.darkRed : ColorsManager.lightRed,
           onError: ColorsManager.white,
           outline: border,
           surfaceContainerHighest: elevatedSurface,
@@ -80,6 +80,32 @@ abstract final class AppTheme {
           side: BorderSide(color: border),
         ),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size.fromHeight(48),
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 18),
+          backgroundColor: ColorsManager.primary,
+          foregroundColor: ColorsManager.white,
+          elevation: 0,
+          textStyle: TextStylesManager.buttonLabel,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: ColorsManager.primaryText,
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 14),
+          textStyle: TextStylesManager.body.copyWith(
+            color: ColorsManager.primaryText,
+            fontWeight: FontWeight.w600,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
       inputDecorationTheme: InputDecorationThemeData(
         filled: true,
         fillColor: elevatedSurface,
@@ -92,36 +118,44 @@ abstract final class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(
-            color: ColorsManager.primary,
+          borderSide: BorderSide(
+            color: ColorsManager.primaryText,
             width: 1.5,
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: ColorsManager.red),
+          borderSide: BorderSide(color: ColorsManager.red),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: ColorsManager.red, width: 1.5),
+          borderSide: BorderSide(color: ColorsManager.red, width: 1.5),
         ),
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      navigationBarTheme: NavigationBarThemeData(
+        height: 72,
         backgroundColor: surface,
-        selectedItemColor: ColorsManager.primary,
-        unselectedItemColor: secondaryText,
-        selectedLabelStyle: TextStylesManager.caption.copyWith(
-          fontWeight: FontWeight.w700,
-        ),
-        unselectedLabelStyle: TextStylesManager.caption,
-        elevation: 0,
-        type: BottomNavigationBarType.fixed,
+        indicatorColor: ColorsManager.primaryLight,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return TextStylesManager.caption.copyWith(
+            color: selected ? ColorsManager.primaryText : secondaryText,
+            fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+          );
+        }),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return IconThemeData(
+            color: selected ? ColorsManager.primaryText : secondaryText,
+          );
+        }),
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: surface,
         modalBackgroundColor: surface,
         surfaceTintColor: ColorsManager.transparent,
-        showDragHandle: true,
+        showDragHandle: false,
         dragHandleColor: border,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
@@ -147,10 +181,10 @@ abstract final class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       sliderTheme: SliderThemeData(
-        activeTrackColor: ColorsManager.primary,
+        activeTrackColor: ColorsManager.primaryText,
         inactiveTrackColor: border,
-        thumbColor: ColorsManager.primary,
-        overlayColor: ColorsManager.primary.withValues(alpha: 0.12),
+        thumbColor: ColorsManager.primaryText,
+        overlayColor: ColorsManager.primaryText.withValues(alpha: 0.12),
         trackHeight: 4,
       ),
       listTileTheme: ListTileThemeData(

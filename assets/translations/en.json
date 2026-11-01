@@ -70,6 +70,7 @@
   "fio2_oxygen": "FiO₂ (Oxygen)",
   "hco3": "HCO₃",
   "ideal_body_weight": "Ideal body weight",
+  "target_6ml_kg": "Target Vt (6 mL/kg)",
   "increase_value": "Increase value",
   "inspiratory_time": "Inspiratory Time (Ti)",
   "interactive_abg_values": "Interactive ABG Values",
@@ -98,6 +99,12 @@
   "telemetry_history": "Telemetry History",
   "tidal_volume": "Tidal Volume (Vt)",
   "tidal_volume_target_range": "Target: 4–8",
+  "VC-CMV": "VC-CMV",
+  "PC-CMV": "PC-CMV",
+  "SIMV": "SIMV",
+  "PSV": "PSV",
+  "PRVC": "PRVC",
+  "APRV": "APRV",
   "ventilation_mode": "Ventilation Mode",
   "ventilator_settings": "Ventilator Settings",
   "vitals_telemetry": "Vitals Telemetry",
@@ -192,5 +199,6 @@
   "unit_celsius": "°C",
   "unit_mmhg": "mmHg",
   "unit_per_minute": "/min",
-  "unit_percent": "%"
+  "unit_percent": "%",
+  "spontaneous_measurements": "Spontaneous breathing measurements"
 }

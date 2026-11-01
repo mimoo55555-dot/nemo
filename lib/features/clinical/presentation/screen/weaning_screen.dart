@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/models/patient.dart';
+import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/clinical_calculators.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
@@ -43,6 +44,11 @@ class _WeaningScreenState extends State<WeaningScreen> {
             verticalSpace16,
             WeaningRsbiCardWidget(rsbi: rsbi),
             verticalSpace16,
+            Text(
+              appTranslation().get('spontaneous_measurements'),
+              style: TextStylesManager.sectionTitle,
+            ),
+            verticalSpace8,
             WeaningStepperWidget(
               titleKey: 'spontaneous_rate',
               value:

@@ -10,13 +10,9 @@ abstract final class ColorsManager {
   static const primary = Color(0xFF0F766E);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
-  static const red = Color(0xFFDC2626);
-  static const orange = Color(0xFFEA580C);
-  static const amber = Color(0xFFB45309);
-  static const blue = Color(0xFF2563EB);
-  static const green = Color(0xFF16A34A);
-  static const purple = Color(0xFF9333EA);
-  static const indigo = Color(0xFF4F46E5);
+  static const redAction = Color(0xFFB91C1C);
+  static const lightRed = Color(0xFFB91C1C);
+  static const darkRed = Color(0xFFFCA5A5);
   static const transparent = Color(0x00000000);
 
   static const lightBackground = Color(0xFFF3F6FA);
@@ -42,12 +38,27 @@ abstract final class ColorsManager {
   static Color get textOnDark => darkTextPrimary;
   static Color get textSecondary =>
       _isDarkMode ? darkTextSecondary : lightTextSecondary;
+  static Color get primaryText =>
+      _isDarkMode ? const Color(0xFF5EEAD4) : primary;
   static Color get border => _isDarkMode ? darkBorder : lightBorder;
   static Color get grey => _isDarkMode ? darkTextSecondary : lightTextSecondary;
   static Color get lightGrey =>
       _isDarkMode ? darkElevatedSurface : lightSubtleSurface;
   static Color get blueGrey =>
       _isDarkMode ? const Color(0xFF8FA3BA) : const Color(0xFF607D8B);
+  static Color get red => _isDarkMode ? darkRed : lightRed;
+  static Color get orange =>
+      _isDarkMode ? const Color(0xFFFDBA74) : const Color(0xFFC2410C);
+  static Color get amber =>
+      _isDarkMode ? const Color(0xFFFCD34D) : const Color(0xFF92400E);
+  static Color get blue =>
+      _isDarkMode ? const Color(0xFF93C5FD) : const Color(0xFF1D4ED8);
+  static Color get green =>
+      _isDarkMode ? const Color(0xFF86EFAC) : const Color(0xFF15803D);
+  static Color get purple =>
+      _isDarkMode ? const Color(0xFFD8B4FE) : const Color(0xFF7E22CE);
+  static Color get indigo =>
+      _isDarkMode ? const Color(0xFFA5B4FC) : const Color(0xFF4338CA);
 
   static Color get primaryLight =>
       _isDarkMode ? const Color(0xFF173A38) : const Color(0xFFE1F5F2);

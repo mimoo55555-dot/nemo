@@ -25,15 +25,41 @@ class AbgHistoryItemWidget extends StatelessWidget {
               Text(
                 '${appTranslation().get('pf_ratio')}: ${result.pfRatio.toInt()}',
                 style: TextStylesManager.subtitle.copyWith(
-                  color: ColorsManager.primary,
+                  color: ColorsManager.primaryText,
                 ),
               ),
             ],
           ),
           verticalSpace4,
-          Text(
-            'pH: ${result.ph.toStringAsFixed(2)} · PaCO2: ${result.paCo2.toInt()} · PaO2: ${result.paO2.toInt()} · HCO3: ${result.hco3.toStringAsFixed(1)} · FiO2: ${result.fio2.toInt()}%',
-            style: TextStylesManager.bodySmall,
+          Wrap(
+            spacing: 12,
+            runSpacing: 4,
+            children: [
+              Text(
+                '${appTranslation().get('ph')}: ${result.ph.toStringAsFixed(2)}',
+                style: TextStylesManager.bodySmall,
+              ),
+              Text(
+                '${appTranslation().get('paco2')}: ${result.paCo2.toInt()} mmHg',
+                style: TextStylesManager.bodySmall,
+              ),
+              Text(
+                '${appTranslation().get('pao2')}: ${result.paO2.toInt()} mmHg',
+                style: TextStylesManager.bodySmall,
+              ),
+              Text(
+                '${appTranslation().get('hco3')}: ${result.hco3.toStringAsFixed(1)}',
+                style: TextStylesManager.bodySmall,
+              ),
+              Text(
+                '${appTranslation().get('base_excess')}: ${result.baseExcess.toStringAsFixed(1)}',
+                style: TextStylesManager.bodySmall,
+              ),
+              Text(
+                '${appTranslation().get('fio2')}: ${result.fio2.toInt()}%',
+                style: TextStylesManager.bodySmall,
+              ),
+            ],
           ),
           verticalSpace2,
           Text(

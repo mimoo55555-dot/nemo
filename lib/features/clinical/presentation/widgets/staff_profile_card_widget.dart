@@ -13,37 +13,66 @@ class StaffProfileCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final clinician = user;
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: ColorsManager.primary,
-            child: Text(_initials(clinician?.name)),
-          ),
-          horizontalSpace12,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  clinician?.name ?? appTranslation().get('clinician'),
-                  style: TextStylesManager.subtitle,
+    final roleAndCredentials = [
+      if (clinician != null && clinician.role.trim().isNotEmpty)
+        appTranslation().get(clinician.role),
+      if (clinician != null && clinician.credentials.trim().isNotEmpty)
+        clinician.credentials,
+    ].join(' · ');
+    final profileDetails = [
+      '${appTranslation().get('badge_id')}: ${clinician?.badgeId.isNotEmpty == true ? clinician!.badgeId : appTranslation().get('not_available')}',
+      if (clinician != null && clinician.department.trim().isNotEmpty)
+        appTranslation().get(clinician.department),
+    ].join(' · ');
+    return Card(
+      color: ColorsManager.surface,
+      margin: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(14, 14, 14, 14),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: ColorsManager.primaryLight,
+              child: Text(
+                _initials(clinician?.name),
+                style: TextStylesManager.subtitle.copyWith(
+                  color: ColorsManager.primaryText,
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  '${appTranslation().get(clinician?.role ?? '')} · ${clinician?.credentials ?? ''}',
-                  style: TextStylesManager.bodySmall,
-                ),
-                Text(
-                  '${appTranslation().get('badge_id')}: ${clinician?.badgeId ?? appTranslation().get('not_available')} · ${appTranslation().get(clinician?.department ?? '')}',
-                  style: TextStylesManager.caption,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            horizontalSpace12,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    clinician?.name ?? appTranslation().get('clinician'),
+                    style: TextStylesManager.subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (roleAndCredentials.isNotEmpty) ...[
+                    verticalSpace2,
+                    Text(
+                      roleAndCredentials,
+                      style: TextStylesManager.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                  Text(
+                    profileDetails,
+                    style: TextStylesManager.caption,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

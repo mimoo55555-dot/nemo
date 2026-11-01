@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 
 class MainShellNavigationBarWidget extends StatelessWidget {
@@ -13,33 +12,33 @@ class MainShellNavigationBarWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => BottomNavigationBar(
-    currentIndex: currentIndex.clamp(0, 4),
-    type: BottomNavigationBarType.fixed,
-    selectedItemColor: ColorsManager.primary,
-    unselectedItemColor: ColorsManager.grey,
-    selectedFontSize: 11,
-    unselectedFontSize: 11,
-    onTap: onSelect,
-    items: [
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.air),
+  Widget build(BuildContext context) => NavigationBar(
+    selectedIndex: currentIndex.clamp(0, 3),
+    onDestinationSelected: onSelect,
+    destinations: [
+      NavigationDestination(
+        icon: const Icon(Icons.air_outlined),
+        selectedIcon: const Icon(Icons.air),
         label: appTranslation().get('ventilator'),
       ),
-      BottomNavigationBarItem(
+      NavigationDestination(
         icon: const Icon(Icons.favorite_border),
+        selectedIcon: const Icon(Icons.favorite),
         label: appTranslation().get('vitals'),
       ),
-      BottomNavigationBarItem(
+      NavigationDestination(
         icon: const Icon(Icons.psychology_outlined),
+        selectedIcon: const Icon(Icons.psychology),
         label: appTranslation().get('weaning'),
       ),
-      BottomNavigationBarItem(
+      NavigationDestination(
         icon: const Icon(Icons.science_outlined),
+        selectedIcon: const Icon(Icons.science),
         label: appTranslation().get('abg_lab'),
       ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.grid_view),
+      NavigationDestination(
+        icon: const Icon(Icons.grid_view_outlined),
+        selectedIcon: const Icon(Icons.grid_view_rounded),
         label: appTranslation().get('more'),
       ),
     ],

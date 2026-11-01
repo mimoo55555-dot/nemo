@@ -27,9 +27,9 @@ class VitalsMetricGridWidget extends StatelessWidget {
     crossAxisCount: 2,
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
-    crossAxisSpacing: 10,
-    mainAxisSpacing: 10,
-    childAspectRatio: 1.5,
+    crossAxisSpacing: 12,
+    mainAxisSpacing: 12,
+    childAspectRatio: 1.28,
     children: [
       VitalMetricCardWidget(
         labelKey: 'heart_rate',
@@ -50,7 +50,7 @@ class VitalsMetricGridWidget extends StatelessWidget {
         value: '$respiratoryRate',
         unitKey: 'unit_per_minute',
         icon: Icons.air,
-        accentColor: ColorsManager.primary,
+        accentColor: ColorsManager.primaryText,
       ),
       VitalMetricCardWidget(
         labelKey: 'blood_pressure',

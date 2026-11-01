@@ -19,7 +19,7 @@ class VitalsHeaderWidget extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: ColorsManager.redLight,
-            child: const Icon(Icons.favorite, color: ColorsManager.red),
+            child: Icon(Icons.favorite, color: ColorsManager.red),
           ),
           horizontalSpace12,
           Expanded(

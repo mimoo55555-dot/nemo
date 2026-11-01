@@ -22,35 +22,40 @@ class AbgSliderControlWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Card(
-    color: ColorsManager.surface,
-    child: Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(12, 6, 12, 6),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(label, style: TextStylesManager.bodySmall),
-              Text(
-                value.toStringAsFixed(value == value.roundToDouble() ? 0 : 2),
-                style: TextStylesManager.subtitle.copyWith(
-                  color: ColorsManager.primary,
-                ),
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsetsDirectional.symmetric(vertical: 4),
+    child: Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                label,
+                style: TextStylesManager.bodySmall,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-            ],
-          ),
-          verticalSpace2,
-          Slider(
-            value: value.clamp(min, max),
-            min: min,
-            max: max,
-            divisions: divisions,
-            activeColor: ColorsManager.primary,
-            onChanged: onChanged,
-          ),
-        ],
-      ),
+            ),
+            horizontalSpace8,
+            Text(
+              value.toStringAsFixed(value == value.roundToDouble() ? 0 : 2),
+              style: TextStylesManager.subtitle.copyWith(
+                color: ColorsManager.primaryText,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        verticalSpace2,
+        Slider(
+          value: value.clamp(min, max),
+          min: min,
+          max: max,
+          divisions: divisions,
+          activeColor: ColorsManager.primary,
+          onChanged: onChanged,
+        ),
+      ],
     ),
   );
 }

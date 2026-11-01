@@ -70,6 +70,7 @@
   "fio2_oxygen": "FiO₂ (الأكسجين)",
   "hco3": "HCO₃",
   "ideal_body_weight": "الوزن المثالي للجسم",
+  "target_6ml_kg": "الحجم الجاري المستهدف (6 مل/كجم)",
   "increase_value": "زيادة القيمة",
   "inspiratory_time": "زمن الشهيق (Ti)",
   "interactive_abg_values": "قيم غازات الدم التفاعلية",
@@ -98,6 +99,12 @@
   "telemetry_history": "سجل المراقبة",
   "tidal_volume": "الحجم الجاري (Vt)",
   "tidal_volume_target_range": "المستهدف: 4–8",
+  "VC-CMV": "VC-CMV",
+  "PC-CMV": "PC-CMV",
+  "SIMV": "SIMV",
+  "PSV": "PSV",
+  "PRVC": "PRVC",
+  "APRV": "APRV",
   "ventilation_mode": "نمط التهوية",
   "ventilator_settings": "إعدادات جهاز التنفس",
   "vitals_telemetry": "مراقبة العلامات الحيوية",
@@ -192,5 +199,6 @@
   "unit_celsius": "°م",
   "unit_mmhg": "ملم زئبق",
   "unit_per_minute": "/دقيقة",
-  "unit_percent": "%"
+  "unit_percent": "%",
+  "spontaneous_measurements": "قياسات التنفس التلقائي"
 }

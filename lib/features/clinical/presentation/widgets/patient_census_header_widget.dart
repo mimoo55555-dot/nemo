@@ -20,15 +20,24 @@ class PatientCensusHeaderWidget extends StatelessWidget {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              appTranslation().get('icu_patient_census'),
-              style: TextStylesManager.title,
-            ),
-            Text(_subtitle, style: TextStylesManager.bodySmall),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                appTranslation().get('icu_patient_census'),
+                style: TextStylesManager.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                _subtitle,
+                style: TextStylesManager.bodySmall,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
         PrimaryIconButtonWidget(
           semanticLabelKey: 'close',

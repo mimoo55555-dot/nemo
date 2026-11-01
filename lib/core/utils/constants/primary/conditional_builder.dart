@@ -25,8 +25,10 @@ class ConditionalBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     if (loadingState) {
       return loadingBuilder?.call(context) ??
-          const Center(
-            child: CircularProgressIndicator(color: ColorsManager.primary),
+          Center(
+            child: CircularProgressIndicator(
+              color: ColorsManager.primaryText,
+            ),
           );
     }
     if (errorState) {

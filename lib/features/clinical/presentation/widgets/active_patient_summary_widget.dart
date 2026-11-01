@@ -21,9 +21,9 @@ class ActivePatientSummaryWidget extends StatelessWidget {
     ),
     child: Row(
       children: [
-        const Icon(
+        Icon(
           Icons.airline_seat_flat_angled,
-          color: ColorsManager.primary,
+          color: ColorsManager.primaryText,
         ),
         horizontalSpace12,
         Expanded(
@@ -35,7 +35,7 @@ class ActivePatientSummaryWidget extends StatelessWidget {
                 style: TextStylesManager.subtitle,
               ),
               Text(
-                '${patient.diagnosis} · MRN: ${patient.mrn}',
+                '${patient.diagnosis} · ${appTranslation().get('mrn_number')}: ${patient.mrn}',
                 style: TextStylesManager.bodySmall,
               ),
             ],
