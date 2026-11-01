@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nemoventrt/core/utils/clinical_calculators.dart';
-import 'package:nemoventrt/features/clinical/domain/entities/patient.dart';
+import 'package:nemoventrt/core/models/patient.dart';
 
 void main() {
   group('ClinicalCalculators', () {
@@ -109,11 +109,11 @@ void main() {
 
         expect(
           result['primaryDiagnosis'],
-          equals('Acute Respiratory Acidosis'),
+          equals('abg_acute_respiratory_acidosis'),
         );
         // PaO2 / 0.50 = 140 -> Moderate ARDS (100-200)
         expect(result['pfRatio'], equals(140.0));
-        expect(result['oxygenationStatus'], contains('Moderate ARDS'));
+        expect(result['oxygenationStatus'], equals('abg_moderate_ards'));
       },
     );
   });

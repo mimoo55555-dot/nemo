@@ -1,4 +1,4 @@
-import 'package:nemoventrt/features/clinical/domain/entities/patient.dart';
+import 'package:nemoventrt/core/models/patient.dart';
 
 class ClinicalCalculators {
   /// Calculate Ideal Body Weight (IBW) based on ARDSNet formulas
@@ -92,42 +92,42 @@ class ClinicalCalculators {
         ? (paO2 / fio2Fraction).roundToDouble()
         : 0.0;
 
-    String primaryDiagnosis = 'Normal Acid-Base Balance';
-    String compensation = 'Uncompensated';
+    String primaryDiagnosis = 'abg_normal_acid_base_balance';
+    String compensation = 'abg_uncompensated';
 
     if (ph < 7.35) {
       if (paCo2 > 45 && hco3 >= 22 && hco3 <= 26) {
-        primaryDiagnosis = 'Acute Respiratory Acidosis';
+        primaryDiagnosis = 'abg_acute_respiratory_acidosis';
       } else if (paCo2 > 45 && hco3 > 26) {
-        primaryDiagnosis = 'Partially Compensated Respiratory Acidosis';
-        compensation = 'Partial Renal Compensation';
+        primaryDiagnosis = 'abg_partially_compensated_respiratory_acidosis';
+        compensation = 'abg_partial_renal_compensation';
       } else if (hco3 < 22 && paCo2 <= 45) {
-        primaryDiagnosis = 'Metabolic Acidosis';
+        primaryDiagnosis = 'abg_metabolic_acidosis';
       } else if (paCo2 > 45 && hco3 < 22) {
-        primaryDiagnosis = 'Mixed Respiratory & Metabolic Acidosis';
+        primaryDiagnosis = 'abg_mixed_respiratory_metabolic_acidosis';
       }
     } else if (ph > 7.45) {
       if (paCo2 < 35 && hco3 >= 22 && hco3 <= 26) {
-        primaryDiagnosis = 'Acute Respiratory Alkalosis';
+        primaryDiagnosis = 'abg_acute_respiratory_alkalosis';
       } else if (paCo2 < 35 && hco3 < 22) {
-        primaryDiagnosis = 'Partially Compensated Respiratory Alkalosis';
-        compensation = 'Partial Renal Compensation';
+        primaryDiagnosis = 'abg_partially_compensated_respiratory_alkalosis';
+        compensation = 'abg_partial_renal_compensation';
       } else if (hco3 > 26 && paCo2 >= 35) {
-        primaryDiagnosis = 'Metabolic Alkalosis';
+        primaryDiagnosis = 'abg_metabolic_alkalosis';
       } else if (paCo2 < 35 && hco3 > 26) {
-        primaryDiagnosis = 'Mixed Respiratory & Metabolic Alkalosis';
+        primaryDiagnosis = 'abg_mixed_respiratory_metabolic_alkalosis';
       }
     }
 
-    String oxygenationStatus = 'Adequate Oxygenation';
+    String oxygenationStatus = 'abg_adequate_oxygenation';
     if (pfRatio < 100) {
-      oxygenationStatus = 'Severe ARDS (P/F < 100)';
+      oxygenationStatus = 'abg_severe_ards';
     } else if (pfRatio < 200) {
-      oxygenationStatus = 'Moderate ARDS (P/F 100-200)';
+      oxygenationStatus = 'abg_moderate_ards';
     } else if (pfRatio < 300) {
-      oxygenationStatus = 'Mild ARDS (P/F 200-300)';
+      oxygenationStatus = 'abg_mild_ards';
     } else if (paO2 < 60) {
-      oxygenationStatus = 'Severe Hypoxemia';
+      oxygenationStatus = 'abg_severe_hypoxemia';
     }
 
     return {

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:nemoventrt/core/bloc/app_bloc_observer.dart';
-import 'package:nemoventrt/core/di/injection_container.dart';
-import 'package:nemoventrt/features/clinical/presentation/bloc/auth_cubit.dart';
-import 'package:nemoventrt/features/clinical/presentation/bloc/patient_bloc.dart';
-import 'package:nemoventrt/features/clinical/presentation/bloc/patient_event.dart';
-import 'package:nemoventrt/features/clinical/presentation/screens/main_shell_screen.dart';
+import 'package:nemoventrt/core/di/injections.dart';
+import 'package:nemoventrt/core/network/clinical_network_service.dart';
+import 'package:nemoventrt/core/theme/theme.dart';
+import 'package:nemoventrt/core/utils/constants/primary/theme_builder.dart';
+import 'package:nemoventrt/core/utils/cubit/theme/theme_cubit.dart';
+import 'package:nemoventrt/features/clinical/logic/patient_cubit.dart';
+import 'package:nemoventrt/features/clinical/presentation/logic/auth_cubit.dart';
+import 'package:nemoventrt/features/clinical/presentation/screen/main_shell_screen.dart';
 import 'package:nemoventrt/firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,64 +24,73 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await initInjections();
+  final preferences = sl<SharedPreferences>();
+  final isDark = preferences.getBool('isDark') ?? false;
+  final isArabic =
+      preferences.getBool('isArabicLang') ??
+      WidgetsBinding.instance.platformDispatcher.locale.languageCode == 'ar';
+  final translations = await rootBundle.loadString(
+    'assets/translations/${isArabic ? 'ar' : 'en'}.json',
+  );
 
-  // Initialize Clean Architecture Service Locator (GetIt)
-  await initDependencies();
-
-  runApp(const NemoVentApp());
+  runApp(
+    NemoVentApp(
+      isDark: isDark,
+      isArabic: isArabic,
+      translations: translations,
+    ),
+  );
 }
 
 class NemoVentApp extends StatelessWidget {
-  const NemoVentApp({super.key});
+  final bool isDark;
+  final bool isArabic;
+  final String translations;
+
+  const NemoVentApp({
+    super.key,
+    required this.isDark,
+    required this.isArabic,
+    required this.translations,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const primaryTeal = Color(0xFF0D9488);
-
     return MultiBlocProvider(
       providers: [
-        BlocProvider<PatientBloc>(
-          create: (_) => sl<PatientBloc>()..add(const LoadPatients()),
+        BlocProvider<ThemeCubit>(
+          create: (_) => sl<ThemeCubit>()
+            ..init(
+              isDark: isDark,
+              isArabic: isArabic,
+              translations: translations,
+            ),
+        ),
+        BlocProvider<PatientCubit>(
+          create: (_) => sl<PatientCubit>()..init(sl<ClinicalNetworkService>()),
         ),
         BlocProvider<AuthCubit>(
-          create: (_) => sl<AuthCubit>(),
+          create: (_) => sl<AuthCubit>()..init(),
         ),
       ],
-      child: MaterialApp(
-        title: 'NemoVent RT ICU Suite',
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.system,
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: primaryTeal,
-            primary: primaryTeal,
-            brightness: Brightness.light,
-          ),
-          scaffoldBackgroundColor: const Color(0xFFF8FAFC),
-          cardColor: Colors.white,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Color(0xFF0F172A),
-            elevation: 0.5,
+      child: ThemeBuilder(
+        builder: (context, state) => MaterialApp(
+          title: ThemeCubit.currentTranslation?.get('app_title') ?? '',
+          debugShowCheckedModeBanner: false,
+          themeMode: ThemeCubit.get(context).isDarkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          home: const MainShellScreen(),
+          builder: (context, child) => Directionality(
+            textDirection: ThemeCubit.get(context).isArabicLang
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: child!,
           ),
         ),
-        darkTheme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: primaryTeal,
-            primary: primaryTeal,
-            brightness: Brightness.dark,
-          ),
-          scaffoldBackgroundColor: const Color(0xFF090D16),
-          cardColor: const Color(0xFF162032),
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xFF162032),
-            foregroundColor: Color(0xFFF1F5F9),
-            elevation: 0.5,
-          ),
-        ),
-        home: const MainShellScreen(),
       ),
     );
   }
