@@ -42,7 +42,9 @@ class MainShellAppBarWidget extends StatelessWidget
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  activePatient?.fullName ?? appTranslation().get('app_title'),
+                  activePatient == null
+                      ? appTranslation().get('app_title')
+                      : translateKnownValue(activePatient.fullName),
                   style: TextStylesManager.subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -52,7 +54,7 @@ class MainShellAppBarWidget extends StatelessWidget
                   emptyState: activePatient == null,
                   emptyBuilder: (_) => const SizedBox.shrink(),
                   successBuilder: (_) => Text(
-                    '${activePatient!.bed} · ${activePatient.unit}',
+                    '${translateKnownValue(activePatient!.bed)} · ${translateKnownValue(activePatient.unit)}',
                     style: TextStylesManager.caption,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

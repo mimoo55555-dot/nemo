@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_action_button_widget.dart';
 
-class AdmitPatientDialogActionsWidget extends StatelessWidget {
+class AdmitPatientSheetActionsWidget extends StatelessWidget {
   final bool isSaving;
   final VoidCallback onCancel;
   final VoidCallback onSubmit;
 
-  const AdmitPatientDialogActionsWidget({
+  const AdmitPatientSheetActionsWidget({
     super.key,
     required this.isSaving,
     required this.onCancel,
@@ -27,7 +27,7 @@ class AdmitPatientDialogActionsWidget extends StatelessWidget {
       PrimaryActionButtonWidget(
         labelKey: 'admit_patient',
         loadingLabelKey: 'saving_patient',
-        icon: Icons.person_add_alt_1,
+        icon: Icons.person_add_alt_1_rounded,
         isLoading: isSaving,
         isFullWidth: false,
         onPressed: onSubmit,

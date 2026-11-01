@@ -112,6 +112,10 @@ abstract final class AppTheme {
         contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 14, 16, 14),
         hintStyle: TextStylesManager.bodySmall,
         labelStyle: TextStylesManager.bodySmall,
+        floatingLabelStyle: TextStylesManager.bodySmall.copyWith(
+          color: ColorsManager.primaryText,
+          fontWeight: FontWeight.w600,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: border),

@@ -12,7 +12,7 @@ class ActivePatientSummaryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
     color: ColorsManager.primaryLight,
-    margin: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+    margin: EdgeInsets.zero,
     child: ListTile(
       contentPadding: const EdgeInsetsDirectional.fromSTEB(14, 4, 14, 4),
       leading: CircleAvatar(
@@ -23,13 +23,13 @@ class ActivePatientSummaryWidget extends StatelessWidget {
         ),
       ),
       title: Text(
-        '${appTranslation().get('active_case')}: ${patient.bed} · ${patient.fullName}',
+        '${appTranslation().get('active_case')}: ${translateKnownValue(patient.bed)} · ${translateKnownValue(patient.fullName)}',
         style: TextStylesManager.subtitle,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
-        '${patient.diagnosis} · ${appTranslation().get('mrn_number')}: ${patient.mrn}',
+        '${translateKnownValue(patient.diagnosis)} · ${appTranslation().get('mrn_number')}: ${patient.mrn}',
         style: TextStylesManager.bodySmall,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,

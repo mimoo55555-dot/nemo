@@ -51,7 +51,8 @@ class AbgSlidersWidget extends StatelessWidget {
           ),
           const Divider(height: 12),
           AbgSliderControlWidget(
-            label: '${appTranslation().get('paco2')} (mmHg)',
+            label:
+                '${appTranslation().get('paco2')} (${appTranslation().get('unit_mmhg')})',
             value: paCo2,
             min: 15,
             max: 95,
@@ -60,7 +61,8 @@ class AbgSlidersWidget extends StatelessWidget {
           ),
           const Divider(height: 12),
           AbgSliderControlWidget(
-            label: '${appTranslation().get('pao2')} (mmHg)',
+            label:
+                '${appTranslation().get('pao2')} (${appTranslation().get('unit_mmhg')})',
             value: paO2,
             min: 30,
             max: 300,
@@ -69,7 +71,8 @@ class AbgSlidersWidget extends StatelessWidget {
           ),
           const Divider(height: 12),
           AbgSliderControlWidget(
-            label: '${appTranslation().get('hco3')} (mEq/L)',
+            label:
+                '${appTranslation().get('hco3')} (${appTranslation().get('unit_meq_per_l')})',
             value: hco3,
             min: 10,
             max: 45,

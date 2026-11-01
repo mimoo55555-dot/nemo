@@ -7,6 +7,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final String? initialValue;
   final TextInputType keyboardType;
   final FormFieldSetter<String>? onSaved;
+  final FormFieldValidator<String>? validator;
   final bool isRequired;
 
   const PrimaryTextFormField({
@@ -15,6 +16,7 @@ class PrimaryTextFormField extends StatelessWidget {
     this.initialValue,
     this.keyboardType = TextInputType.text,
     this.onSaved,
+    this.validator,
     this.isRequired = false,
   });
 
@@ -27,11 +29,13 @@ class PrimaryTextFormField extends StatelessWidget {
       labelText: appTranslation().get(labelKey),
       labelStyle: TextStylesManager.bodySmall,
     ),
-    validator: isRequired
-        ? (value) => value == null || value.isEmpty
-              ? appTranslation().get('required')
-              : null
-        : null,
+    validator:
+        validator ??
+        (isRequired
+            ? (value) => value == null || value.isEmpty
+                  ? appTranslation().get('required')
+                  : null
+            : null),
     onSaved: onSaved,
   );
 }

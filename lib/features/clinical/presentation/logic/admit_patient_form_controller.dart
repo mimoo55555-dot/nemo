@@ -16,6 +16,7 @@ class AdmitPatientFormController {
   String mode = 'VC-CMV';
   PatientCategory category = PatientCategory.adult;
   BiologicalSex sex = BiologicalSex.male;
+  int age = 58;
   double heightCm = 175;
   double actualWeightKg = 75;
   double tidalVolume = 450;
@@ -31,6 +32,7 @@ class AdmitPatientFormController {
     diagnosis: diagnosis,
     category: category,
     sex: sex,
+    age: age,
     heightCm: heightCm,
     actualWeightKg: actualWeightKg,
     mode: mode,
@@ -54,6 +56,7 @@ class AdmitPatientFormController {
       sex = value;
       onChanged();
     },
+    onAgeSaved: (value) => age = value,
     onHeightSaved: (value) => heightCm = value,
     onWeightSaved: (value) => actualWeightKg = value,
     onModeChanged: (value) {

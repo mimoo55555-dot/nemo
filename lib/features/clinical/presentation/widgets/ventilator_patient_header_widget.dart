@@ -39,7 +39,7 @@ class VentilatorPatientHeaderWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${patient.bed} · ${patient.fullName}',
+                      '${translateKnownValue(patient.bed)} · ${translateKnownValue(patient.fullName)}',
                       style: TextStylesManager.subtitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -51,7 +51,7 @@ class VentilatorPatientHeaderWidget extends StatelessWidget {
               horizontalSpace8,
               Chip(
                 label: Text(
-                  mode,
+                  appTranslation().get(mode),
                   style: TextStylesManager.caption.copyWith(
                     color: ColorsManager.primaryText,
                     fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class VentilatorPatientHeaderWidget extends StatelessWidget {
               Chip(
                 avatar: const Icon(Icons.monitor_weight_outlined, size: 16),
                 label: Text(
-                  '${appTranslation().get('ideal_body_weight')}: ${ibw.toStringAsFixed(1)} kg',
+                  '${appTranslation().get('ideal_body_weight')}: ${ibw.toStringAsFixed(1)} ${appTranslation().get('unit_kg')}',
                   style: TextStylesManager.caption,
                 ),
                 backgroundColor: ColorsManager.elevatedSurface,
@@ -79,7 +79,7 @@ class VentilatorPatientHeaderWidget extends StatelessWidget {
               Chip(
                 avatar: const Icon(Icons.straighten_outlined, size: 16),
                 label: Text(
-                  '${appTranslation().get('target_6ml_kg')}: $targetVolume mL',
+                  '${appTranslation().get('target_6ml_kg')}: $targetVolume ${appTranslation().get('unit_ml')}',
                   style: TextStylesManager.caption,
                 ),
                 backgroundColor: ColorsManager.elevatedSurface,

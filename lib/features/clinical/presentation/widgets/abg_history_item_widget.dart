@@ -40,11 +40,11 @@ class AbgHistoryItemWidget extends StatelessWidget {
                 style: TextStylesManager.bodySmall,
               ),
               Text(
-                '${appTranslation().get('paco2')}: ${result.paCo2.toInt()} mmHg',
+                '${appTranslation().get('paco2')}: ${result.paCo2.toInt()} ${appTranslation().get('unit_mmhg')}',
                 style: TextStylesManager.bodySmall,
               ),
               Text(
-                '${appTranslation().get('pao2')}: ${result.paO2.toInt()} mmHg',
+                '${appTranslation().get('pao2')}: ${result.paO2.toInt()} ${appTranslation().get('unit_mmhg')}',
                 style: TextStylesManager.bodySmall,
               ),
               Text(
@@ -56,7 +56,7 @@ class AbgHistoryItemWidget extends StatelessWidget {
                 style: TextStylesManager.bodySmall,
               ),
               Text(
-                '${appTranslation().get('fio2')}: ${result.fio2.toInt()}%',
+                '${appTranslation().get('fio2')}: ${result.fio2.toInt()}${appTranslation().get('unit_percent')}',
                 style: TextStylesManager.bodySmall,
               ),
             ],
@@ -74,5 +74,5 @@ class AbgHistoryItemWidget extends StatelessWidget {
   );
 
   String get _interpretation =>
-      result.interpretation.split('|').map(appTranslation().get).join(' · ');
+      result.interpretation.split('|').map(translateKnownValue).join(' · ');
 }

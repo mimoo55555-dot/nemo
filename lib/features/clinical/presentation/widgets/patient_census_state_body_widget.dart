@@ -31,9 +31,16 @@ class PatientCensusStateBodyWidget extends StatelessWidget {
           final query = searchQuery.trim().toLowerCase();
           final searchMatches =
               query.isEmpty ||
+              translateKnownValue(patient.bed).toLowerCase().contains(query) ||
               patient.bed.toLowerCase().contains(query) ||
+              translateKnownValue(patient.fullName)
+                  .toLowerCase()
+                  .contains(query) ||
               patient.fullName.toLowerCase().contains(query) ||
               patient.mrn.toLowerCase().contains(query) ||
+              translateKnownValue(patient.diagnosis)
+                  .toLowerCase()
+                  .contains(query) ||
               patient.diagnosis.toLowerCase().contains(query);
           return categoryMatches && searchMatches;
         })

@@ -17,14 +17,14 @@ class WeaningRsbiCardWidget extends StatelessWidget {
       color: ready ? ColorsManager.primaryLight : ColorsManager.redLight,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: color.withValues(alpha: 0.35)),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Column(
@@ -32,50 +32,74 @@ class WeaningRsbiCardWidget extends StatelessWidget {
                     children: [
                       Text(
                         appTranslation().get('rapid_shallow_breathing_index'),
-                        style: TextStylesManager.subtitle,
+                        style: TextStylesManager.sectionTitle,
                       ),
+                      verticalSpace4,
                       Text(
                         appTranslation().get('rsbi_formula'),
                         style: TextStylesManager.caption,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
                 ),
+                horizontalSpace8,
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    10,
+                    6,
+                    10,
+                    6,
                   ),
                   decoration: BoxDecoration(
-                    color: ready
-                        ? ColorsManager.primary
-                        : ColorsManager.redAction,
+                    color: ColorsManager.surface,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     appTranslation().get(ready ? 'ready_to_wean' : 'not_ready'),
                     style: TextStylesManager.bodySmall.copyWith(
-                      color: ColorsManager.white,
-                      fontWeight: FontWeight.bold,
+                      color: color,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
               ],
             ),
-            verticalSpace16,
-            Text(
-              rsbi.toInt().toString(),
-              style: TextStylesManager.headline.copyWith(
-                fontSize: 48,
-                color: color,
-              ),
-            ),
-            Text(
-              appTranslation().get(
-                ready ? 'rsbi_ready_message' : 'rsbi_not_ready_message',
-              ),
-              style: TextStylesManager.bodySmall.copyWith(color: color),
-              textAlign: TextAlign.center,
+            verticalSpace12,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    appTranslation().get(
+                      ready ? 'rsbi_ready_message' : 'rsbi_not_ready_message',
+                    ),
+                    style: TextStylesManager.body.copyWith(color: color),
+                  ),
+                ),
+                horizontalSpace12,
+                Container(
+                  constraints: const BoxConstraints(minWidth: 76),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    14,
+                    8,
+                    14,
+                    8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: ColorsManager.surface,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    rsbi.toInt().toString(),
+                    textAlign: TextAlign.center,
+                    style: TextStylesManager.headline.copyWith(
+                      color: color,
+                      fontSize: 32,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

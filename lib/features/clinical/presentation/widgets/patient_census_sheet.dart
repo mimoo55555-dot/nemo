@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nemoventrt/core/models/patient.dart';
+import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/utils/extensions/context_extension.dart';
 import 'package:nemoventrt/features/clinical/logic/patient_cubit.dart';
 import 'package:nemoventrt/features/clinical/logic/patient_state.dart';
-import 'package:nemoventrt/features/clinical/presentation/widgets/admit_patient_dialog.dart';
+import 'package:nemoventrt/features/clinical/presentation/widgets/admit_patient_bottom_sheet.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/patient_census_content_widget.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/patient_discharge_dialog_widget.dart';
 
@@ -36,7 +37,7 @@ class _PatientCensusSheetState extends State<PatientCensusSheet> {
         context.pop;
       },
       onDischargePatient: (patient) => _confirmDischarge(context, patient),
-      onAdmitPatient: () => _showAdmitDialog(context),
+      onAdmitPatient: () => _showAdmitPatientSheet(context),
       onClose: () => context.pop,
     ),
   );
@@ -51,11 +52,13 @@ class _PatientCensusSheetState extends State<PatientCensusSheet> {
     );
   }
 
-  void _showAdmitDialog(BuildContext context) {
-    context.pop;
-    showDialog<void>(
+  void _showAdmitPatientSheet(BuildContext context) {
+    showModalBottomSheet<void>(
       context: context,
-      builder: (_) => const AdmitPatientDialog(),
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: ColorsManager.transparent,
+      builder: (_) => const AdmitPatientBottomSheet(),
     );
   }
 }

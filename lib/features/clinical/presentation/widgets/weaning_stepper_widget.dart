@@ -20,46 +20,47 @@ class WeaningStepperWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Card(
-    color: ColorsManager.surface,
-    child: Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            appTranslation().get(titleKey),
-            style: TextStylesManager.body.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          verticalSpace8,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+    child: Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PrimaryIconButtonWidget(
-                semanticLabelKey: 'decrease_value',
-                onPressed: onDecrement,
-                icon: const Icon(Icons.remove_circle_outline),
+              Text(
+                appTranslation().get(titleKey),
+                style: TextStylesManager.bodySmall.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              horizontalSpace12,
+              verticalSpace4,
               Text(
                 value,
                 style: TextStylesManager.subtitle.copyWith(
                   color: ColorsManager.primaryText,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-              horizontalSpace12,
-              PrimaryIconButtonWidget(
-                semanticLabelKey: 'increase_value',
-                onPressed: onIncrement,
-                icon: const Icon(Icons.add_circle_outline),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        horizontalSpace8,
+        PrimaryIconButtonWidget(
+          semanticLabelKey: 'decrease_value',
+          onPressed: onDecrement,
+          icon: const Icon(Icons.remove_rounded),
+        ),
+        PrimaryIconButtonWidget(
+          semanticLabelKey: 'increase_value',
+          onPressed: onIncrement,
+          icon: const Icon(Icons.add_rounded),
+        ),
+      ],
     ),
   );
 }

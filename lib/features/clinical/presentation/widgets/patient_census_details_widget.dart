@@ -22,7 +22,7 @@ class PatientCensusDetailsWidget extends StatelessWidget {
       children: [
         verticalSpace4,
         Text(
-          '${patient.diagnosis} · ${patient.age} ${appTranslation().get('years_abbreviation')} · ${appTranslation().get(patient.sex.name)}',
+          '${translateKnownValue(patient.diagnosis)} · ${patient.age} ${appTranslation().get('years_abbreviation')} · ${appTranslation().get(patient.sex.name)}',
           style: TextStylesManager.caption,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
@@ -37,11 +37,11 @@ class PatientCensusDetailsWidget extends StatelessWidget {
               style: TextStylesManager.caption,
             ),
             Text(
-              '${appTranslation().get('fio2')}: ${settings.fio2.toInt()}%',
+              '${appTranslation().get('fio2')}: ${settings.fio2.toInt()}${appTranslation().get('unit_percent')}',
               style: TextStylesManager.caption,
             ),
             Text(
-              '${appTranslation().get('tidal_volume')}: ${settings.tidalVolume.toInt()} mL',
+              '${appTranslation().get('tidal_volume')}: ${settings.tidalVolume.toInt()} ${appTranslation().get('unit_ml')}',
               style: TextStylesManager.caption,
             ),
             ConditionalBuilder(
@@ -74,7 +74,10 @@ class PatientCensusDetailsWidget extends StatelessWidget {
               color: ColorsManager.grey,
             ),
             horizontalSpace4,
-            Text(patient.unit, style: TextStylesManager.caption),
+            Text(
+              translateKnownValue(patient.unit),
+              style: TextStylesManager.caption,
+            ),
           ],
         ),
       ],

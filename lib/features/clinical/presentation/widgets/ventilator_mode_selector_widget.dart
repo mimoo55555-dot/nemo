@@ -44,7 +44,7 @@ class VentilatorModeSelectorWidget extends StatelessWidget {
             children: _modes
                 .map(
                   (mode) => ChoiceChip(
-                    label: Text(mode),
+                    label: Text(appTranslation().get(mode)),
                     selected: selectedMode == mode,
                     selectedColor: ColorsManager.primary,
                     showCheckmark: false,

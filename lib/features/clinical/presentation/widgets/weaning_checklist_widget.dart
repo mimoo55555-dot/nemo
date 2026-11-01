@@ -31,13 +31,24 @@ class WeaningChecklistWidget extends StatelessWidget {
   Widget build(BuildContext context) => Card(
     color: ColorsManager.surface,
     child: Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 8),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 14, 16, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            appTranslation().get('extubation_readiness_criteria'),
-            style: TextStylesManager.sectionTitle,
+          Row(
+            children: [
+              Icon(
+                Icons.checklist_rounded,
+                color: ColorsManager.primaryText,
+              ),
+              horizontalSpace8,
+              Expanded(
+                child: Text(
+                  appTranslation().get('extubation_readiness_criteria'),
+                  style: TextStylesManager.sectionTitle,
+                ),
+              ),
+            ],
           ),
           verticalSpace8,
           WeaningReadinessCheckboxWidget(
@@ -45,16 +56,19 @@ class WeaningChecklistWidget extends StatelessWidget {
             value: gasExchangeAcceptable,
             onChanged: onGasExchangeChanged,
           ),
+          Divider(height: 1, color: ColorsManager.border),
           WeaningReadinessCheckboxWidget(
             titleKey: 'hemodynamic_stability',
             value: hemodynamicStable,
             onChanged: onHemodynamicChanged,
           ),
+          Divider(height: 1, color: ColorsManager.border),
           WeaningReadinessCheckboxWidget(
             titleKey: 'neurological_readiness',
             value: mentalStatusAlert,
             onChanged: onMentalStatusChanged,
           ),
+          Divider(height: 1, color: ColorsManager.border),
           WeaningReadinessCheckboxWidget(
             titleKey: 'positive_cuff_leak_test',
             value: airwayCuffLeakPositive,

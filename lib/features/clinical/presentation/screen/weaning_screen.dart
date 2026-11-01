@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/models/patient.dart';
-import 'package:nemoventrt/core/theme/text_styles.dart';
 import 'package:nemoventrt/core/utils/clinical_calculators.dart';
-import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/weaning_checklist_widget.dart';
+import 'package:nemoventrt/features/clinical/presentation/widgets/weaning_measurements_section_widget.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/weaning_patient_header_widget.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/weaning_rsbi_card_widget.dart';
-import 'package:nemoventrt/features/clinical/presentation/widgets/weaning_stepper_widget.dart';
 
 class WeaningScreen extends StatefulWidget {
   final Patient patient;
@@ -44,43 +42,16 @@ class _WeaningScreenState extends State<WeaningScreen> {
             verticalSpace16,
             WeaningRsbiCardWidget(rsbi: rsbi),
             verticalSpace16,
-            Text(
-              appTranslation().get('spontaneous_measurements'),
-              style: TextStylesManager.sectionTitle,
-            ),
-            verticalSpace8,
-            WeaningStepperWidget(
-              titleKey: 'spontaneous_rate',
-              value:
-                  '$_spontaneousRate ${appTranslation().get('breaths_per_minute')}',
-              onDecrement: () => setState(
-                () => _spontaneousRate = (_spontaneousRate - 1).clamp(6, 50),
-              ),
-              onIncrement: () => setState(
-                () => _spontaneousRate = (_spontaneousRate + 1).clamp(6, 50),
-              ),
-            ),
-            WeaningStepperWidget(
-              titleKey: 'spontaneous_tidal_volume',
-              value: '${_spontaneousVtMl.toInt()} mL',
-              onDecrement: () => setState(
-                () =>
-                    _spontaneousVtMl = (_spontaneousVtMl - 10).clamp(100, 900),
-              ),
-              onIncrement: () => setState(
-                () =>
-                    _spontaneousVtMl = (_spontaneousVtMl + 10).clamp(100, 900),
-              ),
-            ),
-            WeaningStepperWidget(
-              titleKey: 'negative_inspiratory_force',
-              value: '$_nifCmH2O cmH2O',
-              onDecrement: () => setState(
-                () => _nifCmH2O = (_nifCmH2O - 2).clamp(-60, 0),
-              ),
-              onIncrement: () => setState(
-                () => _nifCmH2O = (_nifCmH2O + 2).clamp(-60, 0),
-              ),
+            WeaningMeasurementsSectionWidget(
+              respiratoryRate: _spontaneousRate,
+              tidalVolume: _spontaneousVtMl,
+              inspiratoryForce: _nifCmH2O,
+              onRespiratoryRateChanged: (value) =>
+                  setState(() => _spontaneousRate = value),
+              onTidalVolumeChanged: (value) =>
+                  setState(() => _spontaneousVtMl = value),
+              onInspiratoryForceChanged: (value) =>
+                  setState(() => _nifCmH2O = value),
             ),
             verticalSpace16,
             WeaningChecklistWidget(

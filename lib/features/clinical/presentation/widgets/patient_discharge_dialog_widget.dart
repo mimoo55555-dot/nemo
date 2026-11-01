@@ -22,8 +22,8 @@ class PatientDischargeDialogWidget extends StatelessWidget {
     content: Text(
       appTranslation()
           .get('remove_patient_from_flowsheet')
-          .replaceFirst('{name}', patient.fullName)
-          .replaceFirst('{bed}', patient.bed),
+          .replaceFirst('{name}', translateKnownValue(patient.fullName))
+          .replaceFirst('{bed}', translateKnownValue(patient.bed)),
       style: TextStylesManager.body,
     ),
     actions: [

@@ -28,7 +28,7 @@ class AlertTileWidget extends StatelessWidget {
           color: isCritical ? ColorsManager.red : ColorsManager.amber,
         ),
         title: Text(
-          '${patient.bed} · ${alert.parameter} (${alert.value})',
+          '${translateKnownValue(patient.bed)} · ${alert.parameter} (${alert.value})',
           style: TextStylesManager.subtitle,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

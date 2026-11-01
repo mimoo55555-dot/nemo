@@ -9,6 +9,7 @@ class AdmitPatientFormData {
   final String diagnosis;
   final PatientCategory category;
   final BiologicalSex sex;
+  final int age;
   final double heightCm;
   final double actualWeightKg;
   final String mode;
@@ -25,6 +26,7 @@ class AdmitPatientFormData {
     required this.diagnosis,
     required this.category,
     required this.sex,
+    required this.age,
     required this.heightCm,
     required this.actualWeightKg,
     required this.mode,
@@ -43,6 +45,7 @@ class AdmitPatientFormCallbacks {
   final ValueChanged<String> onDiagnosisSaved;
   final ValueChanged<PatientCategory> onCategoryChanged;
   final ValueChanged<BiologicalSex> onSexChanged;
+  final ValueChanged<int> onAgeSaved;
   final ValueChanged<double> onHeightSaved;
   final ValueChanged<double> onWeightSaved;
   final ValueChanged<String> onModeChanged;
@@ -59,6 +62,7 @@ class AdmitPatientFormCallbacks {
     required this.onDiagnosisSaved,
     required this.onCategoryChanged,
     required this.onSexChanged,
+    required this.onAgeSaved,
     required this.onHeightSaved,
     required this.onWeightSaved,
     required this.onModeChanged,

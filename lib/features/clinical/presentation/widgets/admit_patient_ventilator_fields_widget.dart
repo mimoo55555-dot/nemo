@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nemoventrt/core/theme/text_styles.dart';
-import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_dropdown_form_field.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_text_form_field.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
@@ -42,17 +40,7 @@ class AdmitPatientVentilatorFieldsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      verticalSpace8,
-      Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          appTranslation().get('initial_ventilator_settings'),
-          style: TextStylesManager.subtitle,
-        ),
-      ),
-      verticalSpace8,
       Row(
         children: [
           Expanded(

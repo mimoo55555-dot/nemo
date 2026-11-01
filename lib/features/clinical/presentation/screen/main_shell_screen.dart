@@ -5,7 +5,7 @@ import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/features/clinical/logic/patient_cubit.dart';
 import 'package:nemoventrt/features/clinical/logic/patient_state.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/alerts_dialog_widget.dart';
-import 'package:nemoventrt/features/clinical/presentation/widgets/admit_patient_dialog.dart';
+import 'package:nemoventrt/features/clinical/presentation/widgets/admit_patient_bottom_sheet.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/main_shell_app_bar_widget.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/main_shell_body_widget.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/main_shell_navigation_bar_widget.dart';
@@ -45,7 +45,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
         state: state,
         currentTabIndex: _currentTabIndex,
         onRetry: PatientCubit.get(context).loadPatients,
-        onAdmitPatient: _showAdmitDialog,
+        onAdmitPatient: _showAdmitPatientSheet,
       ),
       bottomNavigationBar: MainShellNavigationBarWidget(
         currentIndex: _currentTabIndex,
@@ -76,8 +76,11 @@ class _MainShellScreenState extends State<MainShellScreen> {
     builder: (_) => MoreModulesSheet(activePatient: patient),
   );
 
-  void _showAdmitDialog() => showDialog<void>(
+  void _showAdmitPatientSheet() => showModalBottomSheet<void>(
     context: context,
-    builder: (_) => const AdmitPatientDialog(),
+    isScrollControlled: true,
+    useSafeArea: true,
+    backgroundColor: ColorsManager.transparent,
+    builder: (_) => const AdmitPatientBottomSheet(),
   );
 }

@@ -30,10 +30,8 @@ class PrimaryActionButtonWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => FractionallySizedBox(
-    alignment: AlignmentDirectional.center,
-    widthFactor: isFullWidth ? 1 : null,
-    child: ElevatedButton(
+  Widget build(BuildContext context) {
+    final button = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
@@ -70,6 +68,12 @@ class PrimaryActionButtonWidget extends StatelessWidget {
           ),
         ],
       ),
-    ),
-  );
+    );
+    if (!isFullWidth) return button;
+    return FractionallySizedBox(
+      alignment: AlignmentDirectional.center,
+      widthFactor: 1,
+      child: button,
+    );
+  }
 }

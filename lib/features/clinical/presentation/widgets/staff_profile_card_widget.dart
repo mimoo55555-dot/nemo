@@ -13,11 +13,14 @@ class StaffProfileCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final clinician = user;
+    final clinicianName = clinician == null
+        ? appTranslation().get('clinician')
+        : translateKnownValue(clinician.name);
     final roleAndCredentials = [
       if (clinician != null && clinician.role.trim().isNotEmpty)
         appTranslation().get(clinician.role),
       if (clinician != null && clinician.credentials.trim().isNotEmpty)
-        clinician.credentials,
+        translateKnownValue(clinician.credentials),
     ].join(' · ');
     final profileDetails = [
       '${appTranslation().get('badge_id')}: ${clinician?.badgeId.isNotEmpty == true ? clinician!.badgeId : appTranslation().get('not_available')}',
@@ -26,7 +29,7 @@ class StaffProfileCardWidget extends StatelessWidget {
     ].join(' · ');
     return Card(
       color: ColorsManager.surface,
-      margin: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
+      margin: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(14, 14, 14, 14),
         child: Row(
@@ -35,7 +38,7 @@ class StaffProfileCardWidget extends StatelessWidget {
               radius: 25,
               backgroundColor: ColorsManager.primaryLight,
               child: Text(
-                _initials(clinician?.name),
+                _initials(translateKnownValue(clinician?.name ?? '')),
                 style: TextStylesManager.subtitle.copyWith(
                   color: ColorsManager.primaryText,
                   fontWeight: FontWeight.bold,
@@ -48,7 +51,7 @@ class StaffProfileCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    clinician?.name ?? appTranslation().get('clinician'),
+                    clinicianName,
                     style: TextStylesManager.subtitle,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

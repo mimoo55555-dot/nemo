@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nemoventrt/core/models/patient.dart';
 import 'package:nemoventrt/core/theme/colors.dart';
 import 'package:nemoventrt/core/theme/text_styles.dart';
+import 'package:nemoventrt/core/utils/constants/constants.dart';
 import 'package:nemoventrt/core/utils/constants/primary/primary_icon_button_widget.dart';
 import 'package:nemoventrt/core/utils/constants/spacing.dart';
 import 'package:nemoventrt/features/clinical/presentation/widgets/patient_census_details_widget.dart';
@@ -49,7 +50,7 @@ class PatientCensusTileWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                patient.bed,
+                translateKnownValue(patient.bed),
                 style: TextStylesManager.caption.copyWith(
                   color: categoryColor,
                   fontWeight: FontWeight.bold,
@@ -59,7 +60,7 @@ class PatientCensusTileWidget extends StatelessWidget {
             horizontalSpace8,
             Expanded(
               child: Text(
-                patient.fullName,
+                translateKnownValue(patient.fullName),
                 style: TextStylesManager.subtitle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

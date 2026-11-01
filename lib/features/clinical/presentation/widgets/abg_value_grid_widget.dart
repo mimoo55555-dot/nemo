@@ -32,36 +32,39 @@ class AbgValueGridWidget extends StatelessWidget {
       AbgMetricTileWidget(
         label: appTranslation().get('ph'),
         value: ph.toStringAsFixed(2),
-        range: '7.35–7.45',
+        range: appTranslation().get('abg_ph_normal_range'),
         isAlert: ph < 7.35 || ph > 7.45,
       ),
       AbgMetricTileWidget(
         label: appTranslation().get('paco2'),
         value: paCo2.toInt().toString(),
-        range: '35–45 mmHg',
+        range:
+            '${appTranslation().get('abg_paco2_normal_range')} ${appTranslation().get('unit_mmhg')}',
         isAlert: paCo2 < 35 || paCo2 > 45,
       ),
       AbgMetricTileWidget(
         label: appTranslation().get('pao2'),
         value: paO2.toInt().toString(),
-        range: '80–100 mmHg',
+        range:
+            '${appTranslation().get('abg_pao2_normal_range')} ${appTranslation().get('unit_mmhg')}',
         isAlert: paO2 < 60,
       ),
       AbgMetricTileWidget(
         label: appTranslation().get('hco3'),
         value: hco3.toStringAsFixed(1),
-        range: '22–26 mEq/L',
+        range:
+            '${appTranslation().get('abg_hco3_normal_range')} ${appTranslation().get('unit_meq_per_l')}',
         isAlert: hco3 < 22 || hco3 > 26,
       ),
       AbgMetricTileWidget(
         label: appTranslation().get('base_excess'),
         value: baseExcess.toStringAsFixed(1),
-        range: '−2–+2',
+        range: appTranslation().get('abg_base_excess_range'),
         isAlert: baseExcess.abs() > 2,
       ),
       AbgMetricTileWidget(
         label: appTranslation().get('fio2'),
-        value: '${fio2.toInt()}%',
+        value: '${fio2.toInt()}${appTranslation().get('unit_percent')}',
         range: appTranslation().get('current_ventilator'),
         isAlert: false,
       ),

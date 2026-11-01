@@ -14,28 +14,78 @@ class WeaningPatientHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) => Card(
     color: ColorsManager.surface,
     child: Padding(
-      padding: const EdgeInsets.all(14),
-      child: Row(
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundColor: ColorsManager.amberLight,
-            child: Icon(Icons.psychology, color: ColorsManager.amber),
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 24,
+                backgroundColor: ColorsManager.primaryLight,
+                child: Icon(
+                  Icons.airline_seat_flat_angled_rounded,
+                  color: ColorsManager.primaryText,
+                ),
+              ),
+              horizontalSpace12,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      translateKnownValue(patient.fullName),
+                      style: TextStylesManager.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    verticalSpace4,
+                    Text(
+                      '${translateKnownValue(patient.bed)} · ${translateKnownValue(patient.diagnosis)}',
+                      style: TextStylesManager.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          horizontalSpace12,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${patient.bed} · ${appTranslation().get('weaning_sbt_assessment')}',
-                  style: TextStylesManager.subtitle,
+          verticalSpace12,
+          Divider(height: 1, color: ColorsManager.border),
+          verticalSpace8,
+          Row(
+            children: [
+              Icon(
+                Icons.event_note_outlined,
+                size: 16,
+                color: ColorsManager.textSecondary,
+              ),
+              horizontalSpace4,
+              Expanded(
+                child: Text(
+                  '${appTranslation().get('intubation_date')}: ${patient.intubationDate}',
+                  style: TextStylesManager.caption,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Text(
-                  '${patient.fullName} · ${appTranslation().get('intubation_date')}: ${patient.intubationDate}',
-                  style: TextStylesManager.bodySmall,
+              ),
+              horizontalSpace8,
+              Container(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
+                decoration: BoxDecoration(
+                  color: ColorsManager.primaryLight,
+                  borderRadius: BorderRadius.circular(12),
                 ),
-              ],
-            ),
+                child: Text(
+                  appTranslation().get('weaning_sbt_assessment'),
+                  style: TextStylesManager.caption.copyWith(
+                    color: ColorsManager.primaryText,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

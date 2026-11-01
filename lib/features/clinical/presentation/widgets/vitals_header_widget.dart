@@ -27,11 +27,11 @@ class VitalsHeaderWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${patient.bed} · ${appTranslation().get('vitals_telemetry')}',
+                  '${translateKnownValue(patient.bed)} · ${appTranslation().get('vitals_telemetry')}',
                   style: TextStylesManager.subtitle,
                 ),
                 Text(
-                  '${patient.fullName} (${patient.mrn})',
+                  '${translateKnownValue(patient.fullName)} (${patient.mrn})',
                   style: TextStylesManager.bodySmall,
                 ),
               ],

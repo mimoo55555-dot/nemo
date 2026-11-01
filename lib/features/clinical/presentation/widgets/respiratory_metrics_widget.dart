@@ -16,7 +16,8 @@ class RespiratoryMetricsWidget extends StatelessWidget {
           Expanded(
             child: RespiratoryMetricCardWidget(
               label: appTranslation().get('driving_pressure'),
-              value: '${mechanics['drivingPressure']} cmH2O',
+              value:
+                  '${mechanics['drivingPressure']} ${appTranslation().get('unit_cm_h2o')}',
               note: appTranslation().get('plateau_minus_peep_limit'),
               icon: Icons.speed_outlined,
               isAlert: !(mechanics['isDrivingPressureSafe'] as bool),
@@ -26,7 +27,8 @@ class RespiratoryMetricsWidget extends StatelessWidget {
           Expanded(
             child: RespiratoryMetricCardWidget(
               label: appTranslation().get('static_compliance'),
-              value: '${mechanics['staticCompliance']} mL/cmH2O',
+              value:
+                  '${mechanics['staticCompliance']} ${appTranslation().get('unit_ml_per_cm_h2o')}',
               note: appTranslation().get('compliance_normal_range'),
               icon: Icons.air_outlined,
             ),
@@ -39,7 +41,8 @@ class RespiratoryMetricsWidget extends StatelessWidget {
           Expanded(
             child: RespiratoryMetricCardWidget(
               label: appTranslation().get('volume_per_ibw'),
-              value: '${mechanics['mlPerKg']} mL/kg',
+              value:
+                  '${mechanics['mlPerKg']} ${appTranslation().get('unit_ml_per_kg')}',
               note: appTranslation().get('tidal_volume_target_range'),
               icon: Icons.straighten_outlined,
             ),

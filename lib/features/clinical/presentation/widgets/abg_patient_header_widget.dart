@@ -27,11 +27,11 @@ class AbgPatientHeaderWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${patient.bed} · ${appTranslation().get('abg_lab')}',
+                  '${translateKnownValue(patient.bed)} · ${appTranslation().get('abg_lab')}',
                   style: TextStylesManager.subtitle,
                 ),
                 Text(
-                  '${patient.fullName} (${patient.mrn})',
+                  '${translateKnownValue(patient.fullName)} (${patient.mrn})',
                   style: TextStylesManager.bodySmall,
                 ),
               ],

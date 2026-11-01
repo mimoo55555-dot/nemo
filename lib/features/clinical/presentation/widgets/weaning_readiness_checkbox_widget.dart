@@ -18,10 +18,15 @@ class WeaningReadinessCheckboxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => CheckboxListTile(
     contentPadding: EdgeInsets.zero,
-    activeColor: ColorsManager.primary,
+    checkboxShape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(6),
+    ),
+    activeColor: ColorsManager.primaryText,
     title: Text(
       appTranslation().get(titleKey),
-      style: TextStylesManager.bodySmall,
+      style: TextStylesManager.body,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     ),
     value: value,
     onChanged: onChanged,
