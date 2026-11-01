@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "458128243328",
+    "project_id": "nemovent-d3575",
+    "storage_bucket": "nemovent-d3575.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458128243328:android:f79786c3e11d6878b90465",
+        "android_client_info": {
+          "package_name": "com.example.nemoventrt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_jRRCG6bbVxuA5IByC2DopeRz0jDzudU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
